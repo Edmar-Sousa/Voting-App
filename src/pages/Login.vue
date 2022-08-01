@@ -13,16 +13,28 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import CircleButton from '../components/Button.vue'
 import { loginWithGoogle } from '../services/auth'
+import { onShowAlert } from '../utils/alertBus'
 
+
+const router = useRouter()
 const showButton = ref(false)
 
 async function loginUserWithGoogle() {
     showButton.value = true
-    await loginWithGoogle()
+    const result = await loginWithGoogle()
     showButton.value = false
+
+    const message = result ? 'login realizado com sucesso!' : 'erro ao fazer login, tente novamente'
+    const type    = result ? 'primary' : 'danger'
+
+    onShowAlert(message, type)
+
+    if (result) 
+        router.replace('/')
 }
 
 </script>

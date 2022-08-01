@@ -1,7 +1,7 @@
 <template>
     <div class="app">
-        <AlertMessage />
-        <Login />
+      <AlertMessage />
+      <router-view />
     </div>
 </template>
 
@@ -28,6 +28,7 @@ import Login from './pages/Login.vue'
   --white-color: rgb(243, 243, 243);
   --black-color: rgb(0, 0, 0);
   --green-color: rgb(9, 200, 4);
+  --red-color: rgb(214, 8, 8);
 }
 
 body {

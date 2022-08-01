@@ -12,9 +12,11 @@ export async function loginWithGoogle() {
     try {
         await signInWithPopup(auth, provider)
         const userAuth = auth.currentUser?.displayName
+        const userUid  = auth.currentUser?.uid
 
         if (userAuth && userAuth !== '') {
             window.localStorage.setItem('auth', userAuth)
+            window.localStorage.setItem('uid',  userUid)
             return true
         }
 
