@@ -1,6 +1,10 @@
 <template>
-    <header>
+    <header class="header">
         <h1><i class="fa-solid fa-circle-user"></i> {{ userAuthenticated }}</h1>
+
+        <button class="button exit">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
     </header>
 </template>
 
@@ -16,6 +20,30 @@ onMounted(() => {
 
 </script>
 
-<style>
+<style setup>
+
+.header {
+    width: 100%;
+    height: 70px;
+    font-size: 1.3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+}
+
+.button {
+    width: 40px;
+    height: 40px;
+
+    font-size: 20px;
+}
+
+.exit {
+    border: none;
+    background: none;
+}
 
 </style>
