@@ -31,6 +31,7 @@ import Login from './pages/Login.vue'
   --green-color: rgb(9, 200, 4);
   --green-bg-color: rgb(122, 230, 118);
   --red-color: rgb(214, 8, 8);
+  --blue-color: rgb(70, 98, 221);
   --yellow-color: rgb(247, 214, 70);
   --yellow-border: rgb(196, 167, 39);
 }
