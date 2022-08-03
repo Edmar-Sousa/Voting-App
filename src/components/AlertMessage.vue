@@ -30,7 +30,7 @@ import { alertMessageRef, alertTypeRef } from '../utils/alertBus'
     width: 100%;
     height: 40px;
 
-    position: absolute;
+    position: fixed;
     top: -100%;
     left: calc(50% - 150px) ;
 

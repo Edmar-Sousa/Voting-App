@@ -6,7 +6,7 @@
     </div>
 
     <h2>Votações criadas:</h2>
-    <VoitingComponent />
+    <VotingComponent />
   </div>
 
 </template>
@@ -14,7 +14,7 @@
 <script setup>
 
 import HeaderComponent from '../components/Header.vue'
-import VoitingComponent from '../components/Voitings.vue'
+import VotingComponent from '../components/Votings.vue'
 
 </script>
 

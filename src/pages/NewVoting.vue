@@ -12,8 +12,10 @@
         </div>
 
         <form @submit.prevent class="form-column">
-            <input type="text" class="field field-style" placeholder="Titulo">
-            <textarea class="field field-style text-area">Descrição...</textarea>
+            <input type="text" class="field field-style" placeholder="Titulo" required v-model="titleVoting">
+
+            <textarea class="field field-style text-area" required placeholder="Descrição" v-model="descriptionVoting">
+            </textarea>
 
             <div class="options-container">
                 <p class="title-section">Lista de opções:</p>
@@ -39,7 +41,7 @@
                 </div>
             </div>
 
-            <button class="submit-button">
+            <button class="submit-button" @click="createNewVotingInDatabase">
                 Criar votação
             </button>
         </form>
@@ -49,11 +51,20 @@
 <script setup lang="ts">
 
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import WarningMessage from '../components/Warning.vue'
+
+import { createVoting } from '../utils/database'
+import { onShowAlert } from '../utils/alertBus'
 
 const optionsForm = ref(Array<string>())
 const newOption = ref<string>('')
 const showModal = ref(false)
+
+const titleVoting = ref('')
+const descriptionVoting = ref('')
+
+const router = useRouter()
 
 function addNewOption() {
     optionsForm.value?.push(newOption.value)
@@ -63,6 +74,41 @@ function addNewOption() {
 
 function deleteOption(index: number) {
     optionsForm.value?.splice(index, 1)
+}
+
+
+async function createNewVotingInDatabase() {
+    const votingObject = {
+        title: titleVoting.value,
+        description: descriptionVoting.value,
+        options: {}
+    }
+
+
+    if (optionsForm.value.length > 0) {
+        const userUid = window.localStorage.getItem('uid') as string
+
+        optionsForm.value.map(option => votingObject.options[option] = 0)
+        const result = await createVoting(userUid, votingObject)
+
+        if (result == null) {
+            onShowAlert('Erro ao criar a votação', 'danger')
+            return
+        }
+
+        console.log('ok')
+        showModalAndRedirect()
+    }
+
+}
+
+function showModalAndRedirect() {
+    showModal.value = true
+
+    setTimeout(() => {
+        showModal.value = false
+        router.replace('/')
+    }, 1000)
 }
 
 </script>
@@ -81,6 +127,8 @@ function deleteOption(index: number) {
     left: 0;
     right: 0;
     bottom: 0;
+
+    z-index: 20;
 
     transition: 400ms;
 
@@ -105,7 +153,9 @@ function deleteOption(index: number) {
 .back-button {
     width: 100%;
     height: 50px;
+    max-width: 900px;
 
+    margin: auto;
     padding: 0 10px;
 
     display: flex;
@@ -218,13 +268,21 @@ function deleteOption(index: number) {
     width: 100%;
     height: 40px;
 
+    max-width: 300px;
+    margin: auto;
+
     border: none;
     border-radius: 5px;
     font-weight: 600;
 
     font-family: Roboto, Arial, Helvetica, sans-serif;
 
+    cursor: pointer;
     background: var(--green-color);
+}
+
+.submit-button:hover {
+    transform: scale(0.95);
 }
 
 </style>

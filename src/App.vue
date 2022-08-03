@@ -28,6 +28,7 @@ import Login from './pages/Login.vue'
   --white-color: rgb(243, 243, 243);
   --text-white-color: #fff;
   --black-color: rgb(0, 0, 0);
+  --text-gray-color: rgb(66, 66, 66);
   --green-color: rgb(9, 200, 4);
   --green-bg-color: rgb(122, 230, 118);
   --red-color: rgb(214, 8, 8);
