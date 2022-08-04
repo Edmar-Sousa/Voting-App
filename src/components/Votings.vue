@@ -1,17 +1,22 @@
 <template>
-    <div class="voting-container">
+    <div class="voting-container" v-if="voting.length > 0">
         <component 
             v-for="(voting, i) in voting" 
             :key="i" 
             :is="VotingCard" 
             :voting="voting" />
     </div>
+
+    <Warning>
+        Nenhuma votação encontrada!
+    </Warning>
 </template>
 
 <script setup lang="ts">
 
 import { onMounted, ref } from 'vue'
 import VotingCard from './VotingCard.vue'
+import Warning from './Warning.vue'
 
 import { getVotings } from '../utils/database'
 
@@ -40,7 +45,7 @@ onMounted(() => {
     padding: 10px 0;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 400px));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
     gap: 20px;
 }
 

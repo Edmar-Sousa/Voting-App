@@ -15,6 +15,8 @@
     width: 100%;
     margin: 10px 0;
 
+    font-weight: bold;
+
     padding: 10px;
     border-radius: 5px;
     border: 1px solid var(--yellow-border);

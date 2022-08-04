@@ -2,7 +2,7 @@
     <header class="header">
         <h1><i class="fa-solid fa-circle-user"></i> {{ userAuthenticated }}</h1>
 
-        <button class="button exit">
+        <button class="button exit" @click="checkoutUser">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
     </header>
@@ -10,13 +10,21 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const userAuthenticated = ref()
-
+const router = useRouter()
 
 onMounted(() => {
     userAuthenticated.value = window.localStorage.getItem('auth')
 })
+
+
+function checkoutUser() {
+    window.localStorage.removeItem('uid')
+    window.localStorage.removeItem('auth')
+    router.replace('/login')
+}
 
 </script>
 

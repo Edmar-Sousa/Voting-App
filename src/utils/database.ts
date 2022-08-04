@@ -1,5 +1,5 @@
 import realTimeDatabase from '../services/database'
-import { ref, set, onValue, remove, update } from 'firebase/database'
+import { ref, set, onValue, remove, update, increment } from 'firebase/database'
 
 import { v4 as UUID } from 'uuid'
 
@@ -24,12 +24,22 @@ export async function createVoting(userUid: string, votingData: VotingType) {
     }
 }
 
+export function getOneVoting(userUid: string, id: string, callback: Function) {
+    const voting = ref(realTimeDatabase, `voting/${ userUid }/${ id }`)
+
+    onValue(voting, snapshot => {
+        callback(snapshot.val())
+    })
+}
+
 export function getVotings(userUid: string, callback: Function) {
     const votings = ref(realTimeDatabase, `voting/${ userUid }`)
 
     onValue(votings, snapshot => {
         const data = snapshot.val()
-        callback(data)
+        
+        if (data)
+            callback(data)
     })
 }
 
@@ -44,6 +54,26 @@ export async function changeStatusVoting(userUid: string, id: string, value: boo
         return false
     }
 }
+
+export async function updateVotingOption(userUid: string, id: string, key: string, options: Object) {
+    const voting = ref(realTimeDatabase, `voting/${ userUid }/${ id }`)
+
+    const updateObject: any = {
+        person: increment(1),
+        options: { ...options }
+    }
+    
+    updateObject.options[key]= increment(1)
+
+    try {
+        update(voting, updateObject)
+        return true
+    }
+
+    catch (e) {
+        return false
+    }
+} 
 
 export async function deleteVoting(userUid: string, id: string) {
     const voting = ref(realTimeDatabase, `voting/${ userUid }/${ id }`)
