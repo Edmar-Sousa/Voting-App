@@ -37,9 +37,7 @@ export function getVotings(userUid: string, callback: Function) {
 
     onValue(votings, snapshot => {
         const data = snapshot.val()
-        
-        if (data)
-            callback(data)
+        callback(data || {})
     })
 }
 

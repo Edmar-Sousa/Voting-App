@@ -1,13 +1,13 @@
 <template>
-    <div class="voting-container" v-if="voting.length > 0">
+    <div class="voting-container" v-if="voting.length > 0" :class="{ 'only-child' : voting.length == 1 }">
         <component 
             v-for="(votingObj, i) in voting" 
-            :key="i" 
-            :is="VotingCard" 
-            :voting="votingObj" />
+                :key="i" 
+                :is="VotingCard" 
+                :voting="votingObj" />
     </div>
 
-    <Warning>
+    <Warning v-else>
         Nenhuma votação encontrada!
     </Warning>
 </template>
@@ -31,7 +31,6 @@ onMounted(() => {
         Object.keys(data).map(key => {
             voting.value.push({ id: key, ...data[key] })
         })
-
     })
 })
 
@@ -42,12 +41,18 @@ onMounted(() => {
 .voting-container {
     width: 100%;
 
-    padding: 10px 0;
+    padding: 20px 0;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
+.only-child {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+}
 
+.voting-container:only-child {
+    background: #f00;
+}
 </style>

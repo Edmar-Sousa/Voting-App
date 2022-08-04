@@ -39,15 +39,16 @@ import Login from './pages/Login.vue'
 
 body {
   font-size: 1.6rem;
+  overflow-x: hidden;
 }
 
 .app {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
 
-    font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 
-    background: var(--white-color);
+  background: var(--white-color);
 }
 
 
