@@ -14,7 +14,7 @@ export async function loginWithGoogle() {
         const userAuth = auth.currentUser?.displayName
         const userUid  = auth.currentUser?.uid
 
-        if (userAuth && userAuth !== '') {
+        if (userAuth && userAuth !== '' && userUid) {
             window.localStorage.setItem('auth', userAuth)
             window.localStorage.setItem('uid',  userUid)
             return true

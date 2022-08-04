@@ -1,10 +1,10 @@
 <template>
     <div class="voting-container" v-if="voting.length > 0">
         <component 
-            v-for="(voting, i) in voting" 
+            v-for="(votingObj, i) in voting" 
             :key="i" 
             :is="VotingCard" 
-            :voting="voting" />
+            :voting="votingObj" />
     </div>
 
     <Warning>
