@@ -78,7 +78,7 @@ function deleteOption(index: number) {
 
 
 async function createNewVotingInDatabase() {
-    const votingObject = {
+    const votingObject : any = {
         title: titleVoting.value,
         description: descriptionVoting.value,
         options: {}
