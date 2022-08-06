@@ -1,16 +1,60 @@
-# Vue 3 + TypeScript + Vite
+# Voting App
+<p>
+Voting app é um sistema web feito em Vue3 e Firebase. No app é possivel criar votações e compartilhar o link para 
+os participantes da votação. Além disso é possivel encerrar ou re-abrir a votação a qualquer momento. 
+Quando uma votação é encerrada o resultado é compartilhado com os participantes.
+</p>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+## design
+![gif-mostrando-o-app](https://github.com/Edmar-Sousa/Voting-App/blob/master/img/voting-app.gif)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## fluxograma
+![fluxograma-do-app](https://github.com/Edmar-Sousa/Voting-App/blob/master/img/fluxograma.png)
 
-## Type Support For `.vue` Imports in TS
+## Tecnologias usadas
+- Vite
+- Vue 3
+- Firebase
+- HTML/CSS/JavaScript
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## Como executar o projeto
+<p>
+É necessário criar um app no cosole do firebase, apos isso altere os valores das variaveis a 
+seguir, de acordo com o seu app do firebase, no arquivo.
+</p>
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+` src/services/firebase/index.ts `
+```typescript
+const firebaseConfig : FirebaseOptions = {
+    apiKey: "AIzaSyAmBQ7ijasGVaLhZ0mu4aWO3ZIGhM70FfE",
+    authDomain: "voting-app-48e87.firebaseapp.com",
+    projectId: "voting-app-48e87",
+    storageBucket: "voting-app-48e87.appspot.com",
+    messagingSenderId: "855882360930",
+    appId: "1:855882360930:web:461465789455536fae493b",
+    databaseURL: 'https://voting-app-48e87-default-rtdb.firebaseio.com/'
+};
+```
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+```bash
+  # Clone o projeto para sua maquina local
+  https://github.com/Edmar-Sousa/Voting-App.git
+  
+  # No diretorio do projeto
+  cd voting-app
+  
+  # Inicie a instalação das dependências com npm ou yarn
+  npm install
+  
+  # Por fim basta executar o servirdor de desenvolvimento
+  npm run dev
+```
+
+## Deploy
+[link para o app](https://voiting-app.herokuapp.com/)
+
+## Author
+- Edmar Sousa. <br><br>
+[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/edmar-sousa-9666b0201/)
+[![github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Edmar-Sousa)
