@@ -39,7 +39,7 @@ const firebaseConfig : FirebaseOptions = {
 
 ```bash
   # Clone o projeto para sua maquina local
-  https://github.com/Edmar-Sousa/Voting-App.git
+  git clone https://github.com/Edmar-Sousa/Voting-App.git
   
   # No diretorio do projeto
   cd voting-app
